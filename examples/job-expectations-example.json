@@ -1,0 +1,63 @@
+{
+  "candidate": {
+    "name": "John Doe",
+    "resume_path": "/path/to/your/resume.tex",
+    "profile_path": "/path/to/your/profile.md",
+    "home_postcode": "SW1A 1AA",
+    "home_city": "London"
+  },
+  "target_roles": [
+    {
+      "title": "AI Engineer",
+      "search_keywords": ["AI Engineer", "GenAI Engineer", "Artificial Intelligence Engineer"],
+      "min_salary": 60000,
+      "priority": 1
+    },
+    {
+      "title": "ML Engineer",
+      "search_keywords": ["Machine Learning Engineer", "ML Engineer", "Deep Learning Engineer"],
+      "min_salary": 60000,
+      "priority": 2
+    },
+    {
+      "title": "Senior Software Engineer",
+      "search_keywords": ["Senior Software Engineer", "Senior Python Developer", "Senior Backend Engineer"],
+      "min_salary": 55000,
+      "priority": 3
+    },
+    {
+      "title": "Team Lead Engineer",
+      "search_keywords": ["Engineering Team Lead", "Tech Lead", "Principal Engineer", "Engineering Manager"],
+      "min_salary": 60000,
+      "priority": 4
+    }
+  ],
+  "locations": {
+    "p1": {
+      "label": "Income Priority",
+      "cities": ["London", "Birmingham", "Manchester", "Oxford"]
+    },
+    "p2": {
+      "label": "Commute Priority",
+      "cities": ["Newcastle", "Middlesbrough", "Stockton-on-Tees", "Edinburgh"]
+    }
+  },
+  "current_situation": {
+    "gross_annual_salary": 45000,
+    "net_monthly_take_home": 2900
+  },
+  "visa": {
+    "requires_visa": true
+  },
+  "preferences": {
+    "work_mode": ["remote", "hybrid"],
+    "contract_type": "permanent",
+    "hybrid_days_per_week": 2,
+    "max_commute_minutes": 120,
+    "improvement_threshold_pct": 10,
+    "results_per_group": 20
+  },
+  "api_keys": {
+    "reed": ""
+  }
+}

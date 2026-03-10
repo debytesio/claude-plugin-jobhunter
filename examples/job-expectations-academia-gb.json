@@ -1,0 +1,70 @@
+{
+  "candidate": {
+    "name": "Jane Smith",
+    "resume_path": "/path/to/your/cv.tex",
+    "profile_path": "/path/to/your/profile.md",
+    "home_postcode": "DH1 3LE",
+    "home_city": "Durham",
+    "skills": {
+      "technical": ["python", "pytorch", "tensorflow", "scikit-learn", "opencv", "docker",
+                     "gcp", "aws", "postgresql", "latex", "matlab"],
+      "domains": ["computer vision", "deep learning", "reinforcement learning",
+                   "nlp", "transformer", "time series forecasting"],
+      "academic": ["phd", "publications", "peer review", "grant writing",
+                    "research supervision", "scientific writing",
+                    "conference presentations"],
+      "leadership": ["team lead", "mentoring", "research supervision"]
+    }
+  },
+  "sector": "academia",
+  "target_roles": [
+    {
+      "title": "Research Associate",
+      "search_keywords": ["Research Associate", "Research Fellow", "Postdoctoral Research Associate",
+                           "Postdoctoral Researcher", "Research Associate AI",
+                           "Research Associate Computer Science", "Research Associate Machine Learning"],
+      "min_salary": 35000,
+      "priority": 1
+    },
+    {
+      "title": "Research Scientist",
+      "search_keywords": ["Research Scientist", "Applied Research Scientist",
+                           "Senior Research Scientist", "AI Research Scientist"],
+      "min_salary": 35000,
+      "priority": 2
+    },
+    {
+      "title": "Lecturer",
+      "search_keywords": ["Lecturer Computer Science", "Lecturer Artificial Intelligence",
+                           "Lecturer Machine Learning", "Lecturer Software Engineering",
+                           "Assistant Professor Computer Science", "Associate Lecturer"],
+      "min_salary": 35000,
+      "priority": 3
+    }
+  ],
+  "locations": {
+    "p1": {
+      "label": "North East (commutable)",
+      "cities": ["Newcastle", "Middlesbrough", "Durham", "Sunderland", "Stockton-on-Tees"]
+    },
+    "p2": {
+      "label": "Wider UK (relocation considered)",
+      "cities": ["London", "Manchester", "Edinburgh", "Leeds", "Sheffield", "York", "Birmingham"]
+    }
+  },
+  "current_situation": {
+    "gross_annual_salary": 40000,
+    "net_monthly_take_home": 2650
+  },
+  "visa": {
+    "requires_visa": true
+  },
+  "preferences": {
+    "work_mode": ["hybrid", "on-site"],
+    "contract_type": "any",
+    "hybrid_days_per_week": 3,
+    "max_commute_minutes": 120,
+    "improvement_threshold_pct": -10,
+    "results_per_group": 20
+  }
+}
