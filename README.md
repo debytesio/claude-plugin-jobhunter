@@ -2,7 +2,7 @@
 
 Search job platforms (UK and France), match jobs to your profile, check visa sponsorship (UKVI for UK, Talent Passport for France), calculate financial viability (including commute costs), and export ranked results to an Excel workbook (.xlsx).
 
-Powered by [DEB Cloud](https://debytes.io/products/cloud).
+Powered by [DEB Cloud](https://debytes.io/products/cloud). Full documentation at [docs.debytes.io](https://docs.debytes.io).
 
 ## Quick Start
 
@@ -98,6 +98,15 @@ When `DEB_CLOUD_API_KEY` is not set:
 - Python 3.10+
 - openpyxl
 - Windows (macOS and Linux support coming soon)
+
+## Documentation
+
+Full platform documentation: [docs.debytes.io](https://docs.debytes.io)
+
+- [Quickstart](https://docs.debytes.io/quickstart)
+- [Plugin Guide](https://docs.debytes.io/gateways/plugins)
+- [API Reference](https://docs.debytes.io/api-reference/overview)
+- [Credits & Pricing](https://docs.debytes.io/credits)
 
 ## License
 
