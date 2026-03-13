@@ -17,11 +17,15 @@ import argparse
 import configparser
 import csv
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
 
-import _jh_core
+# Add libs/ to path for platform-aware _jh_core package
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'libs'))
+
+import _jh_core  # noqa: E402
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side, numbers
 from openpyxl.utils import get_column_letter
