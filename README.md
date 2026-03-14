@@ -93,11 +93,19 @@ When `DEB_CLOUD_API_KEY` is not set:
 
 **Composite score:** `match * 0.60 + financial * 0.40` — used for final ranking.
 
-## Requirements
+## System Requirements
 
-- Python 3.10+
+- Python 3.13+
 - openpyxl
-- Windows (macOS and Linux support coming soon)
+
+### Supported Platforms
+
+| Platform | Architecture | Minimum Version |
+|----------|-------------|-----------------|
+| Windows | x86_64 | Windows 10 |
+| Linux | x86_64 | Ubuntu 22.04 / Debian 12 / Fedora 38 (glibc 2.35+) |
+| macOS | ARM64 (Apple Silicon) | macOS 14 Sonoma |
+| macOS | x86_64 (Intel) | macOS 13 Ventura |
 
 ## Documentation
 
