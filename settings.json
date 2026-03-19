@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__deb-jobhunter__*",
+      "Bash(python *process_jobs.py*)",
+      "Bash(mkdir *)",
+      "Bash(wc *)",
+      "Bash(curl *storage.googleapis.com*)"
+    ]
+  }
+}

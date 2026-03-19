@@ -1,0 +1,14 @@
+{
+  "name": "job-hunter",
+  "description": "AI-powered job search across UK and France platforms with visa sponsorship checking, salary analysis, and ranked Excel exports. Powered by DEB Cloud.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Franck Fotso",
+    "email": "support@debytes.io",
+    "url": "https://github.com/franckfotso"
+  },
+  "homepage": "https://debytes.io/products/cloud",
+  "repository": "https://github.com/debytesio/claude-plugin-jobhunter",
+  "license": "Apache-2.0",
+  "keywords": ["jobs", "recruitment", "career", "salary", "job-search", "visa", "ukvi", "deb-cloud", "debytes"]
+}
