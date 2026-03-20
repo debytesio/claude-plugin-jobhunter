@@ -1,0 +1,49 @@
+{
+  "country": "fr",
+  "currency": "EUR",
+  "candidate": {
+    "name": "Jean Dupont",
+    "resume_path": "/path/to/your/cv.pdf",
+    "home_city": "Paris",
+    "home_postcode": "75001"
+  },
+  "target_roles": [
+    {
+      "title": "Senior Software Engineer",
+      "search_keywords": ["Senior Software Engineer", "Développeur Senior", "Senior Python Developer"],
+      "min_salary": 50000,
+      "priority": 1
+    }
+  ],
+  "locations": {
+    "p1": {
+      "label": "Major Tech Hubs",
+      "cities": ["Paris", "Lyon"]
+    },
+    "p2": {
+      "label": "Secondary Hubs",
+      "cities": ["Toulouse", "Nantes", "Bordeaux"]
+    }
+  },
+  "current_situation": {
+    "gross_annual_salary": 45000,
+    "net_monthly_take_home": 2900
+  },
+  "visa": {
+    "requires_visa": true,
+    "type": "talent_passport"
+  },
+  "preferences": {
+    "work_mode": ["remote", "hybrid"],
+    "contract_type": "permanent",
+    "hybrid_days_per_week": 2,
+    "max_commute_minutes": 120,
+    "improvement_threshold_pct": 10,
+    "results_per_group": 20
+  },
+  "candidate_skills": [
+    "Python", "FastAPI", "Django", "TypeScript", "React",
+    "PostgreSQL", "Redis", "Docker", "Kubernetes",
+    "AWS", "GCP", "CI/CD", "microservices"
+  ]
+}

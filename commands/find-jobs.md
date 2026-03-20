@@ -12,7 +12,7 @@ Search job platforms for roles matching the candidate profile and financial expe
 
 The user provided this expectations file path: $ARGUMENTS
 
-If no path was provided, ask the user for the path to their expectations JSON file. An example file is available at `${PLUGIN_ROOT}/examples/job-expectations-example.json`.
+If no path was provided, ask the user for the path to their expectations JSON file. An example file is available at `${PLUGIN_ROOT}/examples/job-expectations-example-gb.json`.
 
 ## Instructions
 

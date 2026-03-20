@@ -1,0 +1,49 @@
+{
+  "candidate": {
+    "name": "John Smith",
+    "resume_path": "examples/sample-resume.pdf",
+    "home_postcode": "M1 1AA",
+    "home_city": "Manchester"
+  },
+  "target_roles": [
+    {
+      "title": "Senior Software Engineer",
+      "search_keywords": ["Senior Software Engineer", "Staff Software Engineer"],
+      "min_salary": 55000,
+      "priority": 1
+    }
+  ],
+  "locations": {
+    "p1": {
+      "label": "Income Priority",
+      "cities": ["London"]
+    },
+    "p2": {
+      "label": "Commute Priority",
+      "cities": ["Manchester"]
+    }
+  },
+  "current_situation": {
+    "gross_annual_salary": 50000,
+    "net_monthly_take_home": 3250
+  },
+  "visa": {
+    "requires_visa": true
+  },
+  "preferences": {
+    "work_mode": ["remote", "hybrid"],
+    "contract_type": "permanent",
+    "hybrid_days_per_week": 2,
+    "max_commute_minutes": 90,
+    "improvement_threshold_pct": 10,
+    "results_per_group": 20
+  },
+  "candidate_skills": [
+    "Python", "Java", "TypeScript", "Go",
+    "Django", "FastAPI", "Spring Boot", "React", "Next.js",
+    "PostgreSQL", "Redis", "MongoDB",
+    "Docker", "Kubernetes", "AWS", "GCP",
+    "CI/CD", "Terraform",
+    "REST APIs", "GraphQL", "microservices"
+  ]
+}

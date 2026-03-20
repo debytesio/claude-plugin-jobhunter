@@ -46,10 +46,10 @@ Most job search tools stop at scraping. Job Hunter goes further — it brings **
 ### 2. Run
 
 ```
-/job-hunter:find-jobs path/to/my-expectations.json
+/job-hunter:find-jobs examples/job-expectations-example-gb.json
 ```
 
-First run opens your browser to authenticate with DEB Cloud (free account). See [`examples/`](examples/) for expectation file templates.
+A sample resume and expectations file are included — try it out of the box. First run opens your browser to authenticate with DEB Cloud (free account).
 
 ## How It Works
 

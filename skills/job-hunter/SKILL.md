@@ -559,5 +559,5 @@ Where:
 - `${PLUGIN_ROOT}/config/country-gb.ini` — UK-specific: tax, NI, platforms, visa, commute
 - `${PLUGIN_ROOT}/config/country-fr.ini` — FR-specific: tax, social, platforms, visa, commute
 - `${PLUGIN_ROOT}/scripts/process_jobs.py` — Processing script (dedup, filter, financial, Excel export)
-- `${PLUGIN_ROOT}/examples/job-expectations-example.json` — UK example input schema
-- `${PLUGIN_ROOT}/examples/job-expectations-fr.json` — French example input schema
+- `${PLUGIN_ROOT}/examples/job-expectations-example-gb.json` — UK example input schema
+- `${PLUGIN_ROOT}/examples/job-expectations-example-fr.json` — French example input schema
