@@ -46,7 +46,7 @@ Most job search tools stop at scraping. Job Hunter goes further — it brings **
 ### 2. Run
 
 ```
-/find-jobs path/to/my-expectations.json
+/job-hunter:find-jobs path/to/my-expectations.json
 ```
 
 First run opens your browser to authenticate with DEB Cloud (free account). See [`examples/`](examples/) for expectation file templates.
@@ -124,7 +124,7 @@ More countries coming soon — stay tuned.
 
 ## Pricing
 
-Free plan includes 100 credits/month — enough for several full searches including scraping, enrichment, and scoring.
+Free 14-day trial with 250 credits — enough for several full searches including scraping, enrichment, and scoring.
 
 Need more? Upgrade at [debytes.io/products/cloud](https://debytes.io/products/cloud).
 
