@@ -22,8 +22,8 @@ Search 14 job platforms across UK and France. Score every listing against your p
 <br>
 
 <div align="center">
-  <img src="docs/images/cli-scraping.png" alt="Job Hunter — parallel scraping with real-time progress" width="800">
-  <p><em>Parallel scraping across multiple platforms with real-time progress tracking</em></p>
+  <img src="docs/images/cli-pipeline-results.png" alt="Job Hunter — pipeline results with Top 5 ranked jobs" width="800">
+  <p><em>Full pipeline: 84 jobs scored, 16 financially viable, Top 5 ranked by composite score</em></p>
 </div>
 
 ## Why Job Hunter?
@@ -75,6 +75,11 @@ Expectations JSON
                                 |  (coming soon)        |
                                 +-----------------------+
 ```
+
+<div align="center">
+  <img src="docs/images/cli-scraping.png" alt="Parallel scraping with real-time progress" width="800">
+  <p><em>Parallel scraping across 6 workers with real-time progress and credit tracking</em></p>
+</div>
 
 ## Key Capabilities
 
