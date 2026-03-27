@@ -251,7 +251,8 @@ def _load_commute_overrides(json_path):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    results = data if isinstance(data, list) else data.get("results", [])
+    results = (data if isinstance(data, list)
+               else data.get("routes", data.get("results", [])))
     for route in results:
         if route.get("status") != "found":
             continue
@@ -1226,6 +1227,10 @@ def process_excel(
     scored_input = (scored_data.get("scored_jobs", scored_data)
                     if isinstance(scored_data, dict) else scored_data)
     print(f"Loaded {len(scored_input)} pre-scored jobs")
+
+    # Fix encoding artifacts and dates
+    _fix_text_encoding(scored_input)
+    _fix_posted_dates(scored_input)
 
     # Ensure target_role is assigned
     role_keywords = _build_role_keywords(expectations)

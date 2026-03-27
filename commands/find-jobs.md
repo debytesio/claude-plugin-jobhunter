@@ -1,7 +1,7 @@
 ---
 description: Search job platforms and find best matches for candidate expectations
 argument-hint: <path-to-expectations-json>
-allowed-tools: [Read, Write, Bash, Glob, Grep, WebSearch, WebFetch, mcp__plugin_job-hunter_deb-jobhunter__scrape_jobs, mcp__plugin_job-hunter_deb-jobhunter__scrape_url, mcp__plugin_job-hunter_deb-jobhunter__get_reputation, mcp__plugin_job-hunter_deb-jobhunter__ping, mcp__plugin_job-hunter_deb-jobhunter__estimate_credits, mcp__plugin_job-hunter_deb-jobhunter__launch_scrape_jobs, mcp__plugin_job-hunter_deb-jobhunter__poll_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_scrape_results, mcp__plugin_job-hunter_deb-jobhunter__compute_job_uuids, mcp__plugin_job-hunter_deb-jobhunter__init_enrichment, mcp__plugin_job-hunter_deb-jobhunter__launch_enrich_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_enrich_results, mcp__plugin_job-hunter_deb-jobhunter__launch_score_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_score_results, mcp__plugin_job-hunter_deb-jobhunter__init_scoring, mcp__plugin_job-hunter_deb-jobhunter__init_company_checks, mcp__plugin_job-hunter_deb-jobhunter__launch_company_checks, mcp__plugin_job-hunter_deb-jobhunter__get_company_check_results, mcp__plugin_job-hunter_deb-jobhunter__get_commute_cost]
+allowed-tools: [Read, Write, Bash, Glob, Grep, WebSearch, WebFetch, mcp__plugin_job-hunter_deb-jobhunter__scrape_jobs, mcp__plugin_job-hunter_deb-jobhunter__scrape_url, mcp__plugin_job-hunter_deb-jobhunter__get_reputation, mcp__plugin_job-hunter_deb-jobhunter__ping, mcp__plugin_job-hunter_deb-jobhunter__estimate_credits, mcp__plugin_job-hunter_deb-jobhunter__launch_scrape_jobs, mcp__plugin_job-hunter_deb-jobhunter__poll_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_scrape_results, mcp__plugin_job-hunter_deb-jobhunter__compute_job_uuids, mcp__plugin_job-hunter_deb-jobhunter__init_enrichment, mcp__plugin_job-hunter_deb-jobhunter__launch_enrich_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_enrich_results, mcp__plugin_job-hunter_deb-jobhunter__launch_score_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_score_results, mcp__plugin_job-hunter_deb-jobhunter__init_scoring, mcp__plugin_job-hunter_deb-jobhunter__init_company_checks, mcp__plugin_job-hunter_deb-jobhunter__launch_company_checks, mcp__plugin_job-hunter_deb-jobhunter__get_company_check_results, mcp__plugin_job-hunter_deb-jobhunter__get_commute_cost, mcp__plugin_job-hunter_deb-jobhunter__launch_commute_jobs, mcp__plugin_job-hunter_deb-jobhunter__get_commute_results, mcp__plugin_job-hunter_deb-jobhunter__get_ukvi_sponsors]
 ---
 
 # Find Jobs
@@ -28,22 +28,6 @@ Execute the full job-hunter skill workflow:
 
 4. **Check for existing working directory** (`job-search-*` in the expectations folder) with a `state.json`. If found, resume from the last checkpoint instead of starting fresh.
 
-5. **Follow the full workflow** of the job-hunter skill:
-   - Load inputs and validate
-   - Build the search matrix (roles x locations x platforms)
-   - Scrape job listings using DEB Cloud MCP tools — **save each query result immediately to disk**
-   - After scraping, combine all per-query JSONs into `checkpoint-raw-combined.json`
-   - Deduplicate via process_jobs.py
-   - LLM agent scoring
-   - Company checks (reputation, visa sponsor, agency detection) via DEB Cloud
-   - Financial viability and Excel export via process_jobs.py
+5. **CRITICAL: Read `${PLUGIN_ROOT}/skills/job-hunter/SKILL.md` BEFORE doing any work.** This file contains the complete step-by-step pipeline (Steps 0-6) with exact tool names, arguments, and bash commands. Follow it exactly — do NOT improvise or skip steps.
 
 6. **Report results** to the user with summary statistics, top matches, and Excel file path.
-
-## Reference Files
-
-All skill references are at `${PLUGIN_ROOT}/skills/job-hunter/references/`:
-- `scraping-strategy.md` — Platform-specific scraping instructions
-- `matching-algorithm.md` — Scoring rubric and weights
-- `financial-viability.md` — Tax, NI, and commute cost formulas
-- `csv-output-spec.md` — Excel output column definitions and formatting

@@ -1,7 +1,7 @@
 ---
 name: job-hunter
 description: This skill should be used when the user asks to "find jobs", "search for jobs matching my expectations", "find the best job matching my expectation", "job hunt", "search job platforms", "match jobs to my profile", "find AI engineer jobs", "find ML engineer jobs", "search for senior software engineer roles", "find jobs with visa sponsorship", or mentions job hunting, job matching, career search, or job platform scraping.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Job Hunter
@@ -11,6 +11,14 @@ Search job platforms (UK and France), match listings to the candidate's profile,
 Powered by **DEB Cloud** — scraping, reference data, and job caching are provided by the DEB Cloud MCP server (`mcp__deb-jobhunter__*` tools).
 
 The `country` field in the expectations JSON drives platform selection, tax/social calculation, visa checking, and currency formatting. Supported countries: `gb` (default), `fr`.
+
+**Output language**: All user-facing output (progress messages, reports, summaries, Excel headers) MUST be in the language of the `country` field. For `fr`: write in French. For `gb`: write in English. If the user writes in a specific language, respond in that language regardless of country.
+
+**CRITICAL — Follow ALL steps in order. DO NOT skip steps or improvise.**
+The pipeline has 7 mandatory steps: Step 0 → 1 → 2 → 3 → 3.5 → 4 → 5 → 5.5 → 6.
+Each step depends on the previous step's output. Skipping enrichment (Step 4) degrades scoring. Skipping company checks (Step 5.5) loses ratings and visa data. Skipping commute (Step 6) loses financial viability.
+Do NOT write custom Python to replace `process_jobs.py` stages — always use the script as documented.
+Do NOT use `scrape_jobs` (legacy) — always use `launch_scrape_jobs` (async pipeline).
 
 ## Context Management — Save Tool Responses to File
 
@@ -24,7 +32,7 @@ Use `Bash` to create the directory if it doesn't exist: `mkdir -p /tmp/mcp_jobhu
 
 **Pattern for every MCP tool call that returns content:**
 
-1. Call the MCP tool (e.g., `scrape_jobs`, `scrape_url`, `get_reputation`, `get_commute_cost`)
+1. Call the MCP tool (e.g., `scrape_jobs`, `scrape_url`, `get_reputation`, `get_commute_results`)
 2. **Immediately** use the `Write` tool to save the full response to a JSON file in the temp directory
 3. Only retain a **brief summary** in your working memory: status, count, file path
 4. When you need the data later, use the `Read` tool to load it from the file
@@ -160,15 +168,16 @@ Execute these steps in order. Save intermediate data at each step. Log progress 
 ### Step 2: Build Search Matrix and Estimate Credits
 
 1. For each target role, get the `search_keywords` array (use first keyword as primary).
-2. Combine all roles with all cities from both P1 and P2 groups.
-3. **Select platforms** — read `[platforms]` from the shared INI config:
-   - `default`: priority-ordered list of 4 platforms (used for paid plans).
-   - `free`: smaller list of 2 platforms (used for free plan).
+2. **Translate keywords if needed** — search keywords MUST be in the language of the target country. If the user provided English keywords for a non-English country (e.g. "Data Engineer" for FR), translate them (e.g. "Ingénieur Data"). Include both the translated and original as separate keywords for broader coverage. Common FR translations: internship=Stage, engineer=Ingénieur, developer=Développeur, senior=Senior (same), manager=Responsable.
+3. Combine all roles with all cities from both P1 and P2 groups.
+4. **Select platforms** — read `[platforms]` from the country INI first, then fall back to shared INI:
+   - `default`: priority-ordered platform list (used for paid plans).
+   - `free`: reduced platform list (used for free plan).
    - If `plan=free` (from ping response): use the `free` list and only the first keyword per role (`free_max_keywords=1`). The user can request more platforms, but warn them about credit impact and show the estimate before proceeding.
-   - All other plans: use the `default` list. The user can request additional platforms beyond the default 4; show the estimate so they can decide.
+   - All other plans: use the `default` list. The user can request additional platforms; show the estimate so they can decide.
    - **GB (academia)**: use `[platforms_academia]` from country INI instead.
-4. Only include platforms that are also enabled (`=1`) in the country INI `[platforms]` section.
-5. Build the search matrix as a list of `{query, platforms, location, country, min_salary}` entries.
+5. Only include platforms that are also enabled (`=1`) in the country INI `[platforms]` section.
+6. Build the search matrix as a list of `{query, platforms, location, country, min_salary}` entries.
 
 **Credit estimation (Gate 1):**
 Call `mcp__deb-jobhunter__estimate_credits` with the search matrix. This returns a breakdown of estimated credits (scraping, enrichment, scoring, reputation, total). Show the user the estimate and confirm before proceeding.
@@ -177,12 +186,14 @@ Call `mcp__deb-jobhunter__estimate_credits` with the search matrix. This returns
 
 **Requires DEB Cloud key.** If degraded mode, skip this step and instruct the user to provide raw job data.
 
-**Platform codes** (match INI platform names):
+**Platform codes** (match INI platform names — server auto-selects country-specific URLs):
 - **GB industry**: `linkedin`, `indeed`, `reed`, `totaljobs`, `cwjobs`, `cvlibrary`, `adzuna`
 - **GB academia**: use `mcp__deb-jobhunter__scrape_url` for jobs.ac.uk and EURAXESS with specific URLs from `[platform_urls_academia]` INI section
-- **FR**: `linkedin`, `indeed_fr`, `welcometothejungle`, `apec`, `hellowork`, `lesjeudis`
+- **FR**: `linkedin`, `indeed`, `apec`, `hellowork`
 
 **Launch scrape workers:**
+
+**IMPORTANT**: Use `launch_scrape_jobs` (async batch tool), NOT `scrape_jobs` (legacy single-call tool). The `scrape_jobs` tool is for ad-hoc single queries only — it blocks, saturates context, and doesn't track progress. The pipeline MUST use the async launch/poll/get pattern.
 
 1. Call `mcp__deb-jobhunter__launch_scrape_jobs` with the search matrix and `target_roles` list.
    - Returns `{batch_id, worker_count, estimated_credits}`.
@@ -371,8 +382,11 @@ Before running the processing script, fetch commute cost data:
    - **Normalize cities**: strip postcodes, "England, United Kingdom", "Area" suffixes. E.g. "London EC2A 2AP" → "London", "Manchester, England, United Kingdom" → "Manchester". Deduplicate after normalizing.
    - Skip the candidate's home city (commute = 0)
    - Read origin from expectations JSON: `candidate.home_city`
-   - Call `mcp__deb-jobhunter__get_commute_cost` in batches of 5 destinations
-   - Merge all batch results into `{working_dir}/commute-data.json`
+   - Call `mcp__deb-jobhunter__launch_commute_jobs(origin, destinations, country)` with the normalized list
+   - Poll with `mcp__deb-jobhunter__poll_jobs(batch_id)` until complete
+   - Call `mcp__deb-jobhunter__get_commute_results(batch_id)` to retrieve results
+   - If results contain `download_url`, download and save; otherwise save `routes` array directly
+   - Save to `{working_dir}/commute-data.json`
    - Pass `--commute-data` flag to process_jobs.py (overrides INI commute tables)
 
 2. **Run the excel stage** of the processing script. The `checkpoint-scored.json` MUST be a flat JSON array of jobs (not wrapped in `scored_jobs`/`stats`). Each job must have ALL fields from dedup + score fields from scoring. If it's a dict with `scored_jobs` key, the merge step (Step 5f) was skipped — go back and fix it.
@@ -509,9 +523,22 @@ When `poll_jobs` returns, render final state:
 🏢 Company checks complete in {elapsed}  →  {rated} rated, {sponsors} sponsors, {agencies} agencies
 ```
 
-### Step 6 (financial + Excel):
+### Step 6 (commute + financial + Excel):
+Print before calling `poll_jobs(batch_id)`:
 ```
-🚗 Commute costs...                    {credits} cr
+🚗 Commute [{bar}] {pct}%  |  {done}/{total} workers
+  Batch 1  {icon}  {result_count} cities    {credits} cr
+  Batch 2  {icon}  {result_count} cities    {credits} cr
+  Credits consumed: {credits_consumed}
+```
+When `poll_jobs` returns, render final state:
+```
+🚗 Commute [████████████████████] 100%  |  {done}/{total} workers
+  Batch 1  ✅  {result_count} cities    {credits} cr
+  Batch 2  ✅  {result_count} cities    {credits} cr
+  Credits consumed: {credits_consumed}
+
+🚗 Commute complete in {elapsed}  →  {found} routes found
 ```
 
 ### Final summary (after Step 6):
@@ -544,7 +571,7 @@ Where:
 - Respect rate limits: wait `request_delay_seconds` between requests to the same platform.
 - If a platform blocks or errors, skip it and note the failure — do NOT retry.
 - If salary is unlisted, still include the listing but flag it and skip financial calculation.
-- Commute costs are dynamically fetched via `get_commute_cost` MCP tool. If the tool is unavailable, the script falls back to INI config values.
+- Commute costs are dynamically fetched via `launch_commute_jobs` / `get_commute_results` MCP tools. If unavailable, the script falls back to INI config values.
 - UKVI sponsor and agency status are set by company checks MCP tool (Step 5.5).
 - If DEB Cloud key is missing or invalid, scraping and data lookups are unavailable. The user can provide their own raw job data for local processing.
 - **FR**: Talent Passport visa checking is salary-threshold based — no sponsor list needed.

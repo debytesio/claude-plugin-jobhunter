@@ -8,8 +8,11 @@
 
 Search 14 job platforms across UK and France. Score every listing against your profile — skills, salary, visa, commute — and export a professional Excel report.
 
+*The job search autopilot recruiters don't want you to have.*
+
+[![GitHub Stars](https://img.shields.io/github/stars/debytesio/claude-plugin-jobhunter?style=social)](https://github.com/debytesio/claude-plugin-jobhunter)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-404fa4)](https://github.com/debytesio/claude-plugin-jobhunter/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-404fa4)](https://github.com/debytesio/claude-plugin-jobhunter/releases)
 [![Python 3.13+](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)]()
 [![Platforms](https://img.shields.io/badge/OS-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)]()
 
@@ -33,6 +36,7 @@ Most job search tools stop at scraping. Job Hunter goes further — it brings **
 - **One command, 1,000+ jobs analysed** — parallel scraping across 14 platforms, deduplication, JD enrichment, and 8-dimension AI scoring
 - **Real financial analysis** — country-specific tax, NI/social contributions, and commute costs calculated so you see your actual take-home before applying
 - **Company intelligence** — employer ratings, visa sponsor verification (140k+ UKVI register), and recruitment agency detection built in
+- **One command, full pipeline** — 450 jobs scraped, enriched, scored, and exported in under 10 minutes
 
 ## Quick Start
 
@@ -49,7 +53,7 @@ Most job search tools stop at scraping. Job Hunter goes further — it brings **
 /job-hunter:find-jobs examples/job-expectations-example-gb.json
 ```
 
-A sample resume and expectations file are included — try it out of the box. First run opens your browser to authenticate with DEB Cloud (free account).
+A sample resume and expectations file are included — try it out of the box. First run opens your browser to authenticate with DEB Cloud (free trial, no card required).
 
 ## How It Works
 
@@ -68,12 +72,6 @@ Expectations JSON
 |  Company  |-->| Financial |-->|  Excel Report         |
 |  Checks   |   | Analysis  |   |  5 sheets, 21 columns |
 +-----------+   +-----------+   +-----------------------+
-                                          |
-                                          v
-                                +-----------------------+
-                                |  Web Artifacts        |
-                                |  (coming soon)        |
-                                +-----------------------+
 ```
 
 <div align="center">
@@ -92,8 +90,7 @@ Expectations JSON
 | **Company Checks** | Employer ratings, UKVI visa sponsor status, and agency detection — in one step |
 | **Smart Dedup** | Cross-platform deduplication so the same job from 3 boards appears once |
 | **Session Persistence** | Checkpoints at every step — resume interrupted searches automatically |
-| **Multi-Country** | UK (GBP, PAYE/NI) and France (EUR, impot/cotisations) — more countries coming soon |
-| **Web Artifacts** | View and manage results on the DEB Cloud portal *(coming soon)* |
+| **Multi-Country** | UK (GBP, PAYE/NI) and France (EUR, impot/cotisations) — more countries planned |
 
 ## Output
 
@@ -119,19 +116,11 @@ Every job title is a clickable link. Non-viable jobs are highlighted in red. Sco
   <p><em>Structured summary with financial targets and per-city breakdown</em></p>
 </div>
 
-More countries coming soon — stay tuned.
-
 ## Supported Platforms
 
 **UK** — Indeed, LinkedIn, Reed, Totaljobs, CW Jobs, CV-Library, Adzuna
 
 **France** — Indeed, LinkedIn, Welcome to the Jungle, APEC, HelloWork, Les Jeudis
-
-## Pricing
-
-Free 14-day trial with 250 credits — enough for several full searches including scraping, enrichment, and scoring.
-
-Need more? Upgrade at [debytes.io/products/cloud](https://debytes.io/products/cloud).
 
 ## System Requirements
 
@@ -150,7 +139,6 @@ Need more? Upgrade at [debytes.io/products/cloud](https://debytes.io/products/cl
 - [Quickstart](https://docs.debytes.io/quickstart)
 - [Plugin Guide](https://docs.debytes.io/gateways/plugins)
 - [API Reference](https://docs.debytes.io/api-reference/overview)
-- [Credits & Pricing](https://docs.debytes.io/credits)
 
 ## Community & Support
 
@@ -160,7 +148,7 @@ Need more? Upgrade at [debytes.io/products/cloud](https://debytes.io/products/cl
 
 ## Contributing
 
-We welcome contributions. Please open an issue first to discuss what you'd like to change.
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
@@ -170,7 +158,7 @@ Apache-2.0
 
 <div align="center">
 
-**[Documentation](https://docs.debytes.io)** · **[Credits & Pricing](https://docs.debytes.io/credits)** · **[Report a Bug](https://github.com/debytesio/claude-plugin-jobhunter/issues)**
+**[Documentation](https://docs.debytes.io)** · **[Report a Bug](https://github.com/debytesio/claude-plugin-jobhunter/issues)**
 
 Built by [DeBytes](https://debytes.io)
 

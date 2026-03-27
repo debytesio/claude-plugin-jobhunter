@@ -1,4 +1,6 @@
 {
+  "country": "gb",
+  "currency": "GBP",
   "candidate": {
     "name": "John Smith",
     "resume_path": "examples/sample-resume.pdf",
