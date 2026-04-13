@@ -12,7 +12,7 @@ Search 14 job platforms across UK and France. Score every listing against your p
 
 [![GitHub Stars](https://img.shields.io/github/stars/debytesio/claude-plugin-jobhunter?style=social)](https://github.com/debytesio/claude-plugin-jobhunter)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-404fa4)](https://github.com/debytesio/claude-plugin-jobhunter/releases)
+[![Version](https://img.shields.io/badge/version-1.2.0-404fa4)](https://github.com/debytesio/claude-plugin-jobhunter/releases)
 [![Python 3.13+](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)]()
 [![Platforms](https://img.shields.io/badge/OS-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)]()
 

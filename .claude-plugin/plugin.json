@@ -1,7 +1,7 @@
 {
   "name": "job-hunter",
   "description": "AI-powered job search across UK and France platforms with visa sponsorship checking, salary analysis, and ranked Excel exports. Powered by DEB Cloud.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "DeBytes",
     "email": "support@debytes.io",

@@ -1,7 +1,7 @@
 ---
 name: job-hunter
 description: This skill should be used when the user asks to "find jobs", "search for jobs matching my expectations", "find the best job matching my expectation", "job hunt", "search job platforms", "match jobs to my profile", "find AI engineer jobs", "find ML engineer jobs", "search for senior software engineer roles", "find jobs with visa sponsorship", or mentions job hunting, job matching, career search, or job platform scraping.
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Job Hunter

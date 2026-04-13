@@ -22,7 +22,7 @@ What actually happened. Include error messages or screenshots if available.
 **Environment**
 - OS: [e.g. Windows 11, macOS 15, Ubuntu 24.04]
 - Python version: [e.g. 3.13.1]
-- Plugin version: [e.g. 1.1.0]
+- Plugin version: [e.g. 1.2.0]
 - Claude Code version: [e.g. 1.0.x]
 
 **Additional context**
