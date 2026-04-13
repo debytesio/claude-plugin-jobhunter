@@ -179,8 +179,10 @@ Execute these steps in order. Save intermediate data at each step. Log progress 
 5. Only include platforms that are also enabled (`=1`) in the country INI `[platforms]` section.
 6. Build the search matrix as a list of `{query, platforms, location, country, min_salary}` entries.
 
+7. Read `max_pages_per_platform` from `[general]` in the shared INI (default 2). This value is passed as `max_pages` to both `estimate_credits` and `launch_scrape_jobs`. Users can increase this for broader results, but warn about the credit impact.
+
 **Credit estimation (Gate 1):**
-Call `mcp__deb-jobhunter__estimate_credits` with the search matrix. This returns a breakdown of estimated credits (scraping, enrichment, scoring, reputation, total). Show the user the estimate and confirm before proceeding.
+Call `mcp__deb-jobhunter__estimate_credits` with the search matrix and `max_pages` (from INI). This returns a breakdown of estimated credits (scraping, enrichment, scoring, reputation, total). Show the user the estimate and confirm before proceeding.
 
 ### Step 3: Scrape Job Listings (Pipeline)
 
@@ -195,7 +197,7 @@ Call `mcp__deb-jobhunter__estimate_credits` with the search matrix. This returns
 
 **IMPORTANT**: Use `launch_scrape_jobs` (async batch tool), NOT `scrape_jobs` (legacy single-call tool). The `scrape_jobs` tool is for ad-hoc single queries only — it blocks, saturates context, and doesn't track progress. The pipeline MUST use the async launch/poll/get pattern.
 
-1. Call `mcp__deb-jobhunter__launch_scrape_jobs` with the search matrix and `target_roles` list.
+1. Call `mcp__deb-jobhunter__launch_scrape_jobs` with the search matrix, `target_roles` list, and `max_pages` (from INI).
    - Returns `{batch_id, worker_count, estimated_credits}`.
    - Workers run in parallel on the server — scraping, parsing, deduplication, and caching happen automatically.
 

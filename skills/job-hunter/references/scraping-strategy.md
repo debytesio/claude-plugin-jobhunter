@@ -47,7 +47,7 @@ mcp__deb-jobhunter__scrape_url(
 
 ## Pagination
 
-The INI config specifies `max_pages_per_platform = 2`. The MCP server handles pagination internally — it fetches page 1 and page 2 for each platform automatically.
+The INI config specifies `max_pages_per_platform = 2` (default). This value is passed as `max_pages` to `launch_scrape_jobs` and `estimate_credits`. The MCP server handles pagination internally. Users can increase `max_pages_per_platform` in the INI for broader results (more pages = more credits).
 
 ---
 
@@ -272,7 +272,7 @@ Extract salary from scraped text and normalize to annual GBP integers:
 ## Rate Limiting
 
 - The MCP server handles rate limiting internally
-- Maximum `max_pages_per_platform` (default 2) pages per platform per query
+- Pages per platform per query controlled by `max_pages_per_platform` INI setting (default 2)
 - If a platform returns an error or blocks, do NOT retry — skip and move on
 - Log all platform failures in the output notes column
 
